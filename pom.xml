@@ -30,12 +30,6 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-				<sharedLibraries>
-                        <sharedLibrary>
-                            <groupId>com.mycompany</groupId>
-                            <artifactId>ojdbc6-11.2.0.4</artifactId>
-                        </sharedLibrary>
-                 </sharedLibraries>
                     <cloudHubDeployment>
       					<uri>https://anypoint.mulesoft.com</uri>
       					<muleVersion>4.3.0</muleVersion>
@@ -48,7 +42,13 @@
       					<workerType>MICRO</workerType>
       					<objectStoreV2>true</objectStoreV2>
       				</cloudHubDeployment>
-    			</configuration>
+                <sharedLibraries>
+                        <sharedLibrary>
+                            <groupId>com.oracle.database.jdbc</groupId>
+                            <artifactId>ojdbc6</artifactId>
+                        </sharedLibrary>
+                    </sharedLibraries>
+                </configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -79,9 +79,9 @@
             <classifier>mule-plugin</classifier>
         </dependency>
     	<dependency>
-            <groupId>com.mycompany</groupId>
-            <artifactId>ojdbc6-11.2.0.4</artifactId>
-            <version>0.1</version>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.4</version>
         </dependency>
     </dependencies>
 

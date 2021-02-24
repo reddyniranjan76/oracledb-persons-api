@@ -34,7 +34,7 @@
       					<uri>https://anypoint.mulesoft.com</uri>
       					<muleVersion>4.3.0</muleVersion>
      					<username>niranjanb</username>
-      					<password>Mulesoft@123</password>
+      					<password>Mulesoft@2021</password>
       					<applicationName>oracledb-persons-api</applicationName>
       					<environment>Sandbox</environment>
       					<region>us-east-1</region>
@@ -42,7 +42,7 @@
       					<workerType>MICRO</workerType>
       					<objectStoreV2>true</objectStoreV2>
       				</cloudHubDeployment>
-                <sharedLibraries>
+                	<sharedLibraries>
                         <sharedLibrary>
                             <groupId>com.oracle.database.jdbc</groupId>
                             <artifactId>ojdbc6</artifactId>

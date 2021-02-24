@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="insert-flowFlow" doc:id="6691ba3d-9cbc-4622-811e-2665200f9c7e" >
+		<logger level="INFO" doc:name="Logger" doc:id="6a784c5c-5431-41b3-85c9-0bf443e7b398" message="enter into #[flow.name]"/>
+		<db:insert doc:name="Insert" doc:id="28e7485a-157d-4ec2-9eec-38b89e7d774c" config-ref="Database_Config">
+			<db:sql ><![CDATA[INSERT INTO PERSONS (PERSONID,LASTNAME,FIRSTNAME,ADDRESS,CITY) VALUES (:param1, :param2, :param3, :param4, :param5)]]></db:sql>
+			<db:input-parameters ><![CDATA[#[{
+param1: payload.'PERSONID',
+param2: payload.'LASTNAME',
+param3: payload.'FIRSTNAME',
+param4:	payload.'ADDRESS',
+param5: payload.'CITY'
+}]]]></db:input-parameters>
+		</db:insert>
+		<ee:transform doc:name="Transform Message" doc:id="a3b2b219-2391-44ba-92ca-e54d00bd9813" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+if(payload.affectedRows > 0){
+	status : 'SUCCESS',
+	message : 'New record inserted into db'
+	}
+else {
+	status : 'FAILURE',
+	message : 'No  record inserted into db'
+}	]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="85e7142a-8e7b-4b34-bcf3-757f9e9a480f" message="Exit from #[flow.name]"/>
+	</flow>
+</mule>

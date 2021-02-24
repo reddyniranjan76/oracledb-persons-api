@@ -35,8 +35,20 @@
                             <groupId>com.mycompany</groupId>
                             <artifactId>ojdbc6-11.2.0.4</artifactId>
                         </sharedLibrary>
-                    </sharedLibraries>
-                </configuration>
+                 </sharedLibraries>
+                    <cloudHubDeployment>
+      					<uri>https://anypoint.mulesoft.com</uri>
+      					<muleVersion>4.3.0</muleVersion>
+     					<username>niranjanb</username>
+      					<password>India@123</password>
+      					<applicationName>oracledb-persons-api</applicationName>
+      					<environment>Sandbox</environment>
+      					<region>us-east-1</region>
+      					<workers>1</workers>
+      					<workerType>MICRO</workerType>
+      					<objectStoreV2>true</objectStoreV2>
+      				</cloudHubDeployment>
+    			</configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -96,6 +108,10 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+        	<id>mule-public</id>
+        	<url>https://repository.mulesoft.org/nexus/content/repositories/releases/</url>
         </pluginRepository>
     </pluginRepositories>
 
